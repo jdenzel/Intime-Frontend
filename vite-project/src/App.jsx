@@ -6,6 +6,7 @@ import axios from 'axios'
 import Home from './pages/Home'
 import './App.css'
 import LoginForm from './components/LoginForm'
+import Login from './pages/Login'
 
 axios.defaults.xsrfCookieName='csrftoken'
 axios.defaults.xsrfHeaderName='X-CSRFTOKEN'
@@ -18,12 +19,14 @@ function App() {
       .then((r) => {
         if(r.status === 200)  {
           setUser(r.data)
-        }ß
+        }
       })}, [])
   
       if (!user) return (
         <Router>
-           {/* <Login onLogin={setUser} />; */}
+          <Routes>
+            < Route path='/login' element={<Login onLogin={setUser}/>} />;
+          </Routes>
         </Router>
        
       )  
@@ -32,7 +35,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/login' element={<LoginForm />} />
         <Route path='/' element={<Home />} />
       </Routes>
     </Router>
