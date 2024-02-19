@@ -3,12 +3,13 @@ import * as Yup from 'yup'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
+// For <ErrorMessage/> in the client
 const loginSchema = Yup.object().shape({
-    username: Yup.string().required('Username Required'),
+    username: Yup.string().required('Username Required'), 
     password: Yup.string().required('Password Required'),
 })
 
-function LoginForm() {
+function LoginForm({ onLogin }) {
     const navigate = useNavigate();
 
     return (
@@ -19,13 +20,14 @@ function LoginForm() {
         validationSechema={loginSchema}
         onSubmit={(values, {setSubmitting, setErrors}) => {
             axios.post("https://intime.applikuapp.com/login/", values, { withCredentials:true })
-                .then(response => {
+                .then(response => { // Expected Response from server: {"message": 'Login succesful!', 'user': {'id', 'username', 'first_name', 'last_name'}
                     if(response.status === 200) {
+                        onLogin(response.data.user)
                         navigate('/')
                     }
                     setSubmitting(false)
                     .catch(error => {
-                        setErrors(error.response)
+                        setErrors(error.response) // Expected Response from server: {'message': 'Login unsuccesful', 'errors', status=400 BAD REQUEST}
                         setSubmitting(false)
                     });
                 })
@@ -34,7 +36,7 @@ function LoginForm() {
                 <Form>
                     <h4>Username:</h4>
                     <Field type="text" name="username"/>
-                    <ErrorMessage name="username" component="p"/>
+                    <ErrorMessage name="username" component="p"/> 
                     
                     <h4>Password:</h4>
                     <Field type="text" name="password"/>
@@ -46,3 +48,5 @@ function LoginForm() {
         </Formik>
     )
 }
+
+export default LoginForm;

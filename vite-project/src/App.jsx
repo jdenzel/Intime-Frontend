@@ -5,6 +5,7 @@ import viteLogo from '/vite.svg'
 import axios from 'axios'
 import Home from './pages/Home'
 import './App.css'
+import LoginForm from './components/LoginForm'
 
 axios.defaults.xsrfCookieName='csrftoken'
 axios.defaults.xsrfHeaderName='X-CSRFTOKEN'
@@ -19,10 +20,19 @@ function App() {
           setUser(r.data)
         }ß
       })}, [])
+  
+      if (!user) return (
+        <Router>
+           {/* <Login onLogin={setUser} />; */}
+        </Router>
+       
+      )  
+
 
   return (
     <Router>
       <Routes>
+        <Route path='/login' element={<LoginForm />} />
         <Route path='/' element={<Home />} />
       </Routes>
     </Router>
