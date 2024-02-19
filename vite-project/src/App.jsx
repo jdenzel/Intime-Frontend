@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import React,{ useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Home from './components/Home'
 import './App.css'
 
 function App() {
@@ -22,9 +22,12 @@ function App() {
   }, [])
 
   return (
-    <Routes>
-      
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+    </Router>
+    
   )
 
 }
