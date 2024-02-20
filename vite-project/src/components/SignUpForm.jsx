@@ -45,6 +45,32 @@ function SignUpForm() {
                 }
                 setSubmitting(false);
             });
-        }}></Formik>
+        }}>
+            {({isSubmitting}) => (
+                    <Form>
+                        <h3>First name:</h3>
+                        <Field type="text" name="first_name" />
+                        <ErrorMessage name="first_name" component="p" />
+        
+                        <h3>Last name:</h3>
+                        <Field type="text" name="last_name" />
+                        <ErrorMessage name="last_name" component="p" />
+                        
+                        <h3>Email</h3>
+                        <Field type="text" name="email" />
+                        <ErrorMessage name="email" component="p" />
+
+                        <h3>Username</h3>
+                        <Field type="text" name="username" />
+                        <ErrorMessage name="username" component="p" />
+
+                        <h3>Password</h3>
+                        <Field type="text" name="password" />
+                        <ErrorMessage name="password" component="p" />
+        
+                        <button type="submit" disabled={isSubmitting}>Sign Up</button>
+                    </Form>
+                )}
+        </Formik>
     )
 }
