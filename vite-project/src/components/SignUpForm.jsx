@@ -74,3 +74,5 @@ function SignUpForm() {
         </Formik>
     )
 }
+
+export default SignUpForm;
