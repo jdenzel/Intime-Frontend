@@ -11,7 +11,7 @@ import Login from './pages/Login'
 axios.defaults.xsrfCookieName='csrftoken'
 axios.defaults.xsrfHeaderName='X-CSRFTOKEN'
 
-function App() {
+function MainApp() {
   const [user, setUser] = useState(null);
 
   useEffect(() => { //auto logs in user
@@ -20,27 +20,31 @@ function App() {
         if(r.status === 200)  {
           setUser(r.data)
         }
-      })}, [])
+      })
+      .catch((error) => {
+        // console.error(error)
+      })
+    }, [])
   
       if (!user) return (
-        <Router>
-          <Routes>
-            < Route path='/login' element={<Login onLogin={setUser}/>} />;
-          </Routes>
-        </Router>
-       
+        <Login onLogin={setUser}/>
       )  
 
-
   return (
-    <Router>
       <Routes>
         <Route path='/' element={<Home />} />
       </Routes>
-    </Router>
     
   )
 
+}
+
+function App() {
+  return (
+    <Router>
+      <MainApp />
+    </Router>
+  )
 }
 
 export default App
