@@ -22,5 +22,18 @@ function Navbar({ user, setUser })  {
         } catch (error) {
             console.error("Logout failed", error);
         }
-    }
+    };
+
+    return (
+        <div>
+            <nav>
+            <Link to="/">Home</Link>
+            <Link to="clockin">Time Clock</Link>
+            {/* <Link to="timesheet">Time Sheet</Link> */}
+            <button onClick={handleLogout}>Logout</button>
+            </nav>
+        </div>
+    )
 }
+
+export default Navbar
