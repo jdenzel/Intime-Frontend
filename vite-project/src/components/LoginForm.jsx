@@ -27,11 +27,12 @@ function LoginForm({ onLogin }) {
                         navigate('/')
                     }
                     setSubmitting(false)
-                    .catch(error => {
-                        setErrors(error) // Expected Response from server: {'message': 'Login unsuccesful', 'errors', status=400 BAD REQUEST}
-                        setSubmitting(false)
-                    });
                 })
+                .catch(error => {
+                    setErrors(error) // Expected Response from server: {'message': 'Login unsuccesful', 'errors', status=400 BAD REQUEST}
+                    setSubmitting(false)
+                });
+                
         }}>
             {({ isSubmitting }) => (
                 <Form>
