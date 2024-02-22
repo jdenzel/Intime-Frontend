@@ -30,6 +30,7 @@ function SignUpForm() {
                 axios.post('https://dtesting.applikuapp.com/signup/', values)
             .then(response => {
                 if(response.status === 201){
+                    console.log(response)
                     navigate('/')
                 }
                 setSubmitting(false);

@@ -19,15 +19,16 @@ function LoginForm({ onLogin }) {
         }}
         validationSechema={loginSchema}
         onSubmit={(values, {setSubmitting, setErrors}) => {
-            axios.post("https://intime.applikuapp.com/login/", values, { withCredentials:true })
+            axios.post("https://dtesting.applikuapp.com/login/", values, { withCredentials:true })
                 .then(response => { // Expected Response from server: {"message": 'Login succesful!', 'user': {'id', 'username', 'first_name', 'last_name'}
                     if(response.status === 200) {
                         onLogin(response.data.user)
+                        console.log(response.data.user)
                         navigate('/')
                     }
                     setSubmitting(false)
                     .catch(error => {
-                        setErrors(error.response) // Expected Response from server: {'message': 'Login unsuccesful', 'errors', status=400 BAD REQUEST}
+                        setErrors(error) // Expected Response from server: {'message': 'Login unsuccesful', 'errors', status=400 BAD REQUEST}
                         setSubmitting(false)
                     });
                 })

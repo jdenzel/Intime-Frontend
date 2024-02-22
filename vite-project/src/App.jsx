@@ -5,24 +5,25 @@ import viteLogo from '/vite.svg'
 import axios from 'axios'
 import Home from './pages/Home'
 import './App.css'
-import LoginForm from './components/LoginForm'
 import Login from './pages/Login'
+import Navbar from './components/NavBar'
 
 axios.defaults.xsrfCookieName='csrftoken'
 axios.defaults.xsrfHeaderName='X-CSRFTOKEN'
+axios.defaults.withCredentials = true;
 
 function MainApp() {
   const [user, setUser] = useState(null);
 
   useEffect(() => { //auto logs in user
-    axios.get("https://intime.applikuapp.com/checksession/")
+    axios.get("https://dtesting.applikuapp.com/checksession/")
       .then((r) => {
         if(r.status === 200)  {
           setUser(r.data)
         }
       })
       .catch((error) => {
-        // console.error(error)
+        console.error(error)
       })
     }, [])
   
@@ -31,10 +32,12 @@ function MainApp() {
       )  
 
   return (
+    <div>
+      <Navbar user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home />} />
       </Routes>
-    
+    </div>
   )
 
 }
