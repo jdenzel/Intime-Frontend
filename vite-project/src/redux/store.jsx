@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import formDataReducer from './reducer'
-import clockedInReducer from './slice'
+import clockStatusReducer from './slice'
 
 const store = configureStore({
     reducer: {
         formData: formDataReducer,
-        clockedIn: clockedInReducer
+        clockStatus: clockStatusReducer
     }
 })
 

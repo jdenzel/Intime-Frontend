@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const clockedInSlice = createSlice({
+const clockStatusSlice = createSlice({
     name: 'clockedIn',
     initialState: { clockedIn: false },
     reducers: {
@@ -15,4 +15,4 @@ const clockedInSlice = createSlice({
 
 export const {setClockedIn, setClockedOut} = clockedInSlice.actions
 
-export default clockedInSlice.reducer;
+export default clockStatusSlice.reducer;
