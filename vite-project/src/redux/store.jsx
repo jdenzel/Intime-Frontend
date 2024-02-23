@@ -4,7 +4,7 @@ import clockStatusReducer from './slice'
 
 const store = configureStore({
     reducer: {
-        formData: formDataReducer,
+        formValues: formDataReducer,
         clockStatus: clockStatusReducer
     }
 })

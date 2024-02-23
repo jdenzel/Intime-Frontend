@@ -13,7 +13,7 @@ const clockinSchema = Yup.object().shape({
   role: Yup.string().required("Required"),
 });
 
-function Clockin() {
+function Clockin({ user, date }) {
   const csrfToken = Cookies.get("csrftoken");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,10 +27,10 @@ function Clockin() {
 
   const handleSubmit = (values, { setSubmitting }) => {
     const form = {
-      employee: "",
-      first_name: "",
-      last_name: "",
-      clock_in_time: "",
+      employee: user.user.id,
+      first_name: user.user.first_name,
+      last_name: user.user.last_name,
+      clock_in_time: date.toLocaleTimeString(),
       ...values,
     };
     axios
