@@ -19,8 +19,30 @@ function Clockin() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const clockedIn = useSelector(state => state.clockedStatus.clockedIn)
-    const [form, setForm] = useState({employee: user.id, first_name: user.first_name, last_name: user.last_name, clock_in_time: '', location: '', role: ''})
 
+    const handleSubmit = (values, { setSubmitting }) => {
+        const form = {
+            employee: '',
+            first_name: '',
+            last_name: '',
+            clock_in_time: '',
+            ...values,
+    };
+    axios.post('https://dtesting.applikuapp.com/clockin/', form, {
+        headers: {
+            'X-CSRFToken': csrfToken
+        },
+        withCredentials: true
+    })
+    .then(response => {
+        dispatch(form_data(response.form))
+        dispatch(setClockedIn());
+        setSubmitting(false);
+    })
+    .catch(error => {
+        console.log(error)
+        setSubmitting(false);
+    })
 
     return (
 
