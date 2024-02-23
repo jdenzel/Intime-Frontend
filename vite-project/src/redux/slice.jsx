@@ -13,6 +13,6 @@ const clockStatusSlice = createSlice({
     }
 })
 
-export const {setClockedIn, setClockedOut} = clockedInSlice.actions
+export const {setClockedIn, setClockedOut} = clockStatusSlice.actions
 
 export default clockStatusSlice.reducer;

@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import './App.css'
 import Login from './pages/Login'
 import Navbar from './components/NavBar'
+import Clockin from './components/Clockin'
 
 axios.defaults.xsrfCookieName='csrftoken'
 axios.defaults.xsrfHeaderName='X-CSRFTOKEN'
@@ -36,6 +37,7 @@ function MainApp() {
       <Navbar user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='clockin/' element={<Clockin />} />
       </Routes>
     </div>
   )
