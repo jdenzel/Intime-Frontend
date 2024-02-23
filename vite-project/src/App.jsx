@@ -8,6 +8,8 @@ import './App.css'
 import Login from './pages/Login'
 import Navbar from './components/NavBar'
 import Clockin from './components/Clockin'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 axios.defaults.xsrfCookieName='csrftoken'
 axios.defaults.xsrfHeaderName='X-CSRFTOKEN'
@@ -46,9 +48,11 @@ function MainApp() {
 
 function App() {
   return (
-    <Router>
-      <MainApp />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <MainApp />
+      </Router>
+    </Provider>
   )
 }
 

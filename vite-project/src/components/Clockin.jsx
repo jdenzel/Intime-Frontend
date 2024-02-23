@@ -19,6 +19,12 @@ function Clockin() {
   const dispatch = useDispatch();
   const clockedIn = useSelector((state) => state.clockedStatus.clockedIn);
 
+  useEffect(() => {
+    if (clockedIn) {
+        navigate('/clockout/');
+    }
+}, [clockedIn, navigate]);
+
   const handleSubmit = (values, { setSubmitting }) => {
     const form = {
       employee: "",
@@ -36,6 +42,7 @@ function Clockin() {
       })
       .then((response) => {
         dispatch(form_data(response.form));
+        navigate('/clockout/')
         dispatch(setClockedIn());
         setSubmitting(false);
       })
