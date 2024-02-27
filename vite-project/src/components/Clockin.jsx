@@ -17,19 +17,19 @@ function Clockin({ user, date }) {
   const csrfToken = Cookies.get("csrftoken");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const clockedIn = useSelector((state) => state.clockedStatus.clockedIn);
+  const clockedIn = useSelector((state) => state.clockStatus.clockedIn);
 
   useEffect(() => {
     if (clockedIn) {
-        navigate('/clockout/');
+      navigate("/clockout/");
     }
-}, [clockedIn, navigate]);
+  }, [clockedIn, navigate]);
 
   const handleSubmit = (values, { setSubmitting }) => {
     const form = {
-      employee: user.user.id,
-      first_name: user.user.first_name,
-      last_name: user.user.last_name,
+      employee: user.id,
+      first_name: user.first_name,
+      last_name: user.last_name,
       clock_in_time: date.toLocaleTimeString(),
       ...values,
     };
@@ -41,8 +41,10 @@ function Clockin({ user, date }) {
         withCredentials: true,
       })
       .then((response) => {
-        dispatch(form_data(response.form));
-        navigate('/clockout/')
+        dispatch(form_data({id: response.data.data.id ,...form}));
+        console.log(response)
+        console.log({id: response.data.data.id ,...form})
+        navigate("/clockout/");
         dispatch(setClockedIn());
         setSubmitting(false);
       })
@@ -50,40 +52,40 @@ function Clockin({ user, date }) {
         console.log(error);
         setSubmitting(false);
       });
-
-    return (
-      <Formik
-        initialValues={{ location: "", role: "" }}
-        validationSchema={clockinSchema}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <h3>Date: {date.toLocaleDateString()}</h3>
-          <h3>Time: {date.toLocaleTimeString()}</h3>
-
-          <h3>Location</h3>
-          <Field type="text" name="location" />
-          <ErrorMessage name="location" component="div" />
-
-          <h3>Role</h3>
-          <Field as="select" name="role">
-            <option value="">Select a role</option>
-            <option value="scoreboard">Scoreboard</option>
-            <option value="paperscorer">Paper Scorer</option>
-            <option value="camera">Camera Operator</option>
-            <option value="onlinescorer">Online Scorer</option>
-            <option value="gamechange">Game Changer</option>
-            <option value="subtime">Sub timer</option>
-          </Field>
-          <ErrorMessage name="role" component="div" />
-
-          <button type="submit" disabled={isSubmitting}>
-            Clock In
-          </button>
-        </Form>
-      </Formik>
-    );
   };
+  return (
+    <Formik
+      initialValues={{ location: "", role: "" }}
+      validationSchema={clockinSchema}
+      onSubmit={handleSubmit}>
+        {({ isSubmitting }) => (
+            <Form>
+            <h3>Date: {date.toLocaleDateString()}</h3>
+            <h3>Time: {date.toLocaleTimeString()}</h3>
+    
+            <h3>Location</h3>
+            <Field type="text" name="location" />
+            <ErrorMessage name="location" component="div" />
+    
+            <h3>Role</h3>
+            <Field as="select" name="role">
+              <option value="">Select a role</option>
+              <option value="scoreboard">Scoreboard</option>
+              <option value="paperscorer">Paper Scorer</option>
+              <option value="camera">Camera Operator</option>
+              <option value="onlinescorer">Online Scorer</option>
+              <option value="gamechange">Game Changer</option>
+              <option value="subtime">Sub timer</option>
+            </Field>
+            <ErrorMessage name="role" component="div" />
+    
+            <button type="submit" disabled={isSubmitting}>
+              Clock In
+            </button>
+          </Form>
+        )}
+    </Formik>
+  );
 }
 
 export default Clockin;

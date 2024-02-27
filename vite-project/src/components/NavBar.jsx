@@ -28,7 +28,7 @@ function Navbar({ user, setUser })  {
         <div>
             <nav>
             <Link to="/">Home</Link>
-            <Link to="clockin">Time Clock</Link>
+            <Link to="/clockin">Time Clock</Link>
             {/* <Link to="timesheet">Time Sheet</Link> */}
             <button onClick={handleLogout}>Logout</button>
             </nav>
