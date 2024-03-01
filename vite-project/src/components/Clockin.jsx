@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ const clockinSchema = Yup.object().shape({
 
 function Clockin({ user, date }) {
   const csrfToken = Cookies.get("csrftoken");
+//   console.log(csrfToken)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const clockedIn = useSelector((state) => state.clockStatus.clockedIn);
@@ -33,8 +34,7 @@ function Clockin({ user, date }) {
       clock_in_time: date.toLocaleTimeString(),
       ...values,
     };
-    axios
-      .post("https://dtesting.applikuapp.com/clockin/", form, {
+    axios.post("https://intime.applikuapp.com/clockin/", form, {
         headers: {
           "X-CSRFToken": csrfToken,
         },

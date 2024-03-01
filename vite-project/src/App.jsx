@@ -19,17 +19,20 @@ axios.defaults.withCredentials = true;
 function MainApp() {
   const [user, setUser] = useState(null);
   const [date, setDate] = useState(new Date())
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    //auto logs in user
-    axios.get("https://dtesting.applikuapp.com/checksession/")
+    //auto logs in user there is an active session 
+    axios.get("https://intime.applikuapp.com/checksession/")
       .then((r) => {
         if (r.status === 200) {
           setUser(r.data);
         }
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false);
       });
   }, []);
 
@@ -43,6 +46,7 @@ function MainApp() {
     };
   }, []);
 
+  if (isLoading) return <div>Loading...</div>;
   if (!user) return <Login onLogin={setUser} />;
 
   return (

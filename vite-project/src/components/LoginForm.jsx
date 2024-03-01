@@ -19,7 +19,7 @@ function LoginForm({ onLogin }) {
         }}
         validationSechema={loginSchema}
         onSubmit={(values, {setSubmitting, setErrors}) => {
-            axios.post("https://dtesting.applikuapp.com/login/", values, { withCredentials:true })
+            axios.post("https://intime.applikuapp.com/login/", values, { withCredentials:true })
                 .then(response => { // Expected Response from server: {"message": 'Login succesful!', 'user': {'id', 'username', 'first_name', 'last_name'}
                     if(response.status === 200) {
                         onLogin(response.data.user)

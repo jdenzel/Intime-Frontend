@@ -26,7 +26,7 @@ function Clockout({ date }) {
             clock_out_time: date.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })
         }
 
-        axios.patch(`https://dtesting.applikuapp.com/clockout/${formData.id}/`, form, {
+        axios.patch(`https://intime.applikuapp.com/clockout/${formData.id}/`, form, {
             headers: {
                 'X-CSRFToken': csrfToken
             },
