@@ -7,6 +7,7 @@ import Cookies from "js-cookie"
 
 function Clockout({ date }) {
     const csrfToken = Cookies.get('csrftoken')
+    // console.log(csrfToken)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const formData = useSelector(state => state.formValues.formData)

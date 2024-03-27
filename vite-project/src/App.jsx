@@ -21,9 +21,12 @@ function MainApp() {
   const [date, setDate] = useState(new Date())
   const [isLoading, setIsLoading] = useState(true);
 
+
   useEffect(() => {
     //auto logs in user there is an active session 
-    axios.get("https://intime.applikuapp.com/checksession/")
+    axios.get("https://intime.applikuapp.com/checksession/", {
+      withCredentials: true,
+    })
       .then((r) => {
         if (r.status === 200) {
           setUser(r.data);
