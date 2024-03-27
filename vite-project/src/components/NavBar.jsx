@@ -4,13 +4,14 @@ import Cookies from 'js-cookie'
 
 function Navbar({ user, setUser })  {
     const csrfToken = Cookies.get('csrftoken')
+    const auth_token = Cookies.get('auth_token')
     const navigate = useNavigate()
 
     const handleLogout = async() => {
         try {
             const r = await axios.post('https://intime.applikuapp.com/logout/', {}, {
                 headers: {
-                  'Authorization': `Bearer ${token}`
+                  'Authorization': `Bearer ${auth_token}`
                 },
                 withCredentials: true });
             if(r.status === 204) {
