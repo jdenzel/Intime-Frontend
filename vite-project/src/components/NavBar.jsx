@@ -7,7 +7,7 @@ function Navbar({ user, setUser })  {
     const auth_token = Cookies.get('auth_token')
     const navigate = useNavigate()
     // console.log(auth_token)
-    console.log(Cookies.get())
+    // console.log(Cookies.get())
 
     const handleLogout = async() => {
         try {

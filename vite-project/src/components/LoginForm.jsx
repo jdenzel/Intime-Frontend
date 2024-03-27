@@ -23,7 +23,6 @@ function LoginForm({ onLogin }) {
                 .then(response => { // Expected Response from server: {"message": 'Login succesful!', 'user': {'id', 'username', 'first_name', 'last_name'}
                     if(response.status === 200) {
                         onLogin(response.data.user)
-                        console.log(response.data.user)
                         navigate('/')
                     }
                     setSubmitting(false)
