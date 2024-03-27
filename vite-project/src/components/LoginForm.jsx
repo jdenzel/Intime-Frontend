@@ -22,7 +22,6 @@ function LoginForm({ onLogin }) {
             axios.post("https://intime.applikuapp.com/login/", values, { withCredentials:true })
                 .then(response => { // Expected Response from server: {"message": 'Login succesful!', 'user': {'id', 'username', 'first_name', 'last_name'}
                     if(response.status === 200) {
-                        localStorage.setItem('token')
                         onLogin(response.data.user)
                         console.log(response.data.user)
                         navigate('/')
