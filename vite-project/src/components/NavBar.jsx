@@ -8,10 +8,10 @@ function Navbar({ user, setUser })  {
 
     const handleLogout = async() => {
         try {
-            const r = await axios.post('https://intime.applikuapp.com/logout/', {}, { 
+            const r = await axios.post('https://intime.applikuapp.com/logout/', {}, {
                 headers: {
-                    'X-CSRFToken': csrfToken
-                }, 
+                  'Authorization': `Bearer ${token}`
+                },
                 withCredentials: true });
             if(r.status === 204) {
                 setUser(null);
