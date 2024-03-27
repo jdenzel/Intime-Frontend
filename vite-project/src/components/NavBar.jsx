@@ -6,6 +6,7 @@ function Navbar({ user, setUser })  {
     const csrfToken = Cookies.get('csrftoken')
     const auth_token = Cookies.get('auth_token')
     const navigate = useNavigate()
+    console.log(auth_token)
 
     const handleLogout = async() => {
         try {
