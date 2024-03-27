@@ -11,6 +11,7 @@ import Clockin from "./components/Clockin";
 import Clockout from "./components/Clockout"
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Cookies from 'js-cookie'
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
@@ -22,9 +23,14 @@ function MainApp() {
   const [isLoading, setIsLoading] = useState(true);
 
 
+
   useEffect(() => {
+    const token = Cookies.get('auth_token')
     //auto logs in user there is an active session 
     axios.get("https://intime.applikuapp.com/checksession/", {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
       withCredentials: true,
     })
       .then((r) => {

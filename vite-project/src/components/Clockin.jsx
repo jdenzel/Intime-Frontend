@@ -15,7 +15,6 @@ const clockinSchema = Yup.object().shape({
 
 function Clockin({ user, date }) {
   const csrfToken = Cookies.get("csrftoken");
-  console.log(csrfToken)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const clockedIn = useSelector((state) => state.clockStatus.clockedIn);
