@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 function Navbar({ user, setUser })  {
     const csrfToken = Cookies.get('csrftoken')
     const navigate = useNavigate()
-    const user = JSON.parse(localStorage.getItem('user'))
+    // const user = JSON.parse(localStorage.getItem('user'))
 
     // const handleLogout = async() => {
     //     try {
