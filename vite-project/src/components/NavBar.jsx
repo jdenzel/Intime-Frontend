@@ -24,8 +24,8 @@ function Navbar({ user, setUser })  {
 
     const handleLogout = () => {
         if(user) {
+            navigate('/')
             setUser(null)
-            navigate('/login')
             localStorage.clear()
         }
         else {
