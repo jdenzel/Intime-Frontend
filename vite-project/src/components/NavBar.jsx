@@ -31,7 +31,7 @@ function Navbar({ user, setUser })  {
         else {
             console.log("User could not be signed out")
         }
-    }ß
+    }
 
     return (
         <div>
