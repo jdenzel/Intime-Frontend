@@ -20,7 +20,7 @@ axios.defaults.withCredentials = true;
 function MainApp() {
   const [user, setUser] = useState(null);
   const [date, setDate] = useState(new Date())
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // useEffect(() => {
   //   const token = Cookies.get('auth_token')
