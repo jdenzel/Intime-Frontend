@@ -20,7 +20,7 @@ function TimeSheet({ user }) {
       .catch((error) => {
         console.error("Cannot get timeclocks", error);
       });
-  }, [user]);
+  }, []);
 
   return (
     <div>
