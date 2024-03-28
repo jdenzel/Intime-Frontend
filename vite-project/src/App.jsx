@@ -11,7 +11,7 @@ import Clockin from "./components/Clockin";
 import Clockout from "./components/Clockout"
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import Cookies from 'js-cookie'
+import TimeSheet from "./components/Timesheet";
 
 axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
@@ -46,9 +46,6 @@ function MainApp() {
       setUser(user)
       setIsLoading(false);
     }
-    else {
-      console.log("User not found in local storage")
-    }
   })
 
   useEffect(() => {
@@ -71,6 +68,7 @@ function MainApp() {
         <Route path="/" element={<Home />} />
         <Route path="/clockin" element={<Clockin user={user} date={date} />} />
         <Route path="/clockout" element={<Clockout user={user} date={date} />} />
+        <Route path="/timesheet" element={<TimeSheet user={user} />} />
       </Routes>
     </div>
   );
