@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 function TimeSheet({ user }) {
   const [timeClocks, setTimeClocks] = useState([]);
+//   const csrfToken = Cookies.get('csrftoken')
 
   useEffect(() => {
     axios
       .get("https://intimeapp.applikuapp.com/timesheet", {
-        headers: {
-          "X-CSRFToken": csrfToken,
-        },
+        // headers: {
+        //   "X-CSRFToken": csrfToken,
+        // },
         withCredentials: true,
       })
       .then((response) => {
