@@ -31,14 +31,14 @@ function Navbar({ user, setUser })  {
         else {
             console.log("User could not be signed out")
         }
-    }
+    }ß
 
     return (
         <div>
             <nav>
             <Link to="/">Home</Link>
             <Link to="/clockin">Time Clock</Link>
-            <Link to="timesheet">Time Sheet</Link>
+            <Link to="/timesheet">Time Sheet</Link>
             <button onClick={handleLogout}>Logout</button>
             </nav>
         </div>
