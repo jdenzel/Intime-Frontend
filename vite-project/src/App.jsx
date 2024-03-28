@@ -22,28 +22,34 @@ function MainApp() {
   const [date, setDate] = useState(new Date())
   const [isLoading, setIsLoading] = useState(true);
 
-
+  // useEffect(() => {
+  //   const token = Cookies.get('auth_token')
+  //   //auto logs in user there is an active session 
+  //   axios.get("https://intime.applikuapp.com/checksession/", {
+  //     withCredentials: true,
+  //   })
+  //     .then((r) => {
+  //       if (r.status === 200) {
+  //         setUser(r.data);
+  //       }
+  //       setIsLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       setIsLoading(false);
+  //     });
+  // }, []);
 
   useEffect(() => {
-    const token = Cookies.get('auth_token')
-    //auto logs in user there is an active session 
-    axios.get("https://intime.applikuapp.com/checksession/", {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      withCredentials: true,
-    })
-      .then((r) => {
-        if (r.status === 200) {
-          setUser(r.data);
-        }
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsLoading(false);
-      });
-  }, []);
+    const user = JSON.parse(localStorage.getItem('user'))
+    if(user) {
+      setUser(user)
+      setIsLoading(false);
+    }
+    else {
+      console.log("User not found in local storage")
+    }
+  })
 
   useEffect(() => {
     const timer = setInterval(() => {

@@ -4,26 +4,32 @@ import Cookies from 'js-cookie'
 
 function Navbar({ user, setUser })  {
     const csrfToken = Cookies.get('csrftoken')
-    const auth_token = Cookies.get('auth_token')
     const navigate = useNavigate()
-    // console.log(auth_token)
-    // console.log(Cookies.get())
+    const user = JSON.parse(localStorage.getItem('user'))
 
-    const handleLogout = async() => {
-        try {
-            const r = await axios.post('https://intime.applikuapp.com/logout/', {}, {
-                headers: {
-                  'Authorization': `Bearer ${auth_token}`
-                },
-                withCredentials: true });
-            if(r.status === 204) {
-                setUser(null);
-                navigate('/login');
-            } else {
-                console.error("Logout failed status code: ", r.status);
-            } 
-        } catch(error) {
-            console.error(error)
+    // const handleLogout = async() => {
+    //     try {
+    //         const r = await axios.post('https://intime.applikuapp.com/logout/', {}, {
+    //             withCredentials: true });
+    //         if(r.status === 204) {
+    //             setUser(null);
+    //             navigate('/login');
+    //         } else {
+    //             console.error("Logout failed status code: ", r.status);
+    //         } 
+    //     } catch(error) {
+    //         console.error(error)
+    //     }
+    // }
+
+    const handleLogout = () => {
+        if(user) {
+            setUser(null)
+            navigate('/login')
+            localStorage.clear()
+        }
+        else {
+            console.log("User could not be signed out")
         }
     }
 
