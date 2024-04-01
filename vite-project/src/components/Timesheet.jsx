@@ -8,7 +8,7 @@ function TimeSheet({ user }) {
 
   useEffect(() => {
     axios
-      .get("https://intime.applikuapp.com/timesheet", {
+      .get(`https://intime.applikuapp.com/timesheet?user=${user.id}`, {
         // headers: {
         //   "X-CSRFToken": csrfToken,
         // },
